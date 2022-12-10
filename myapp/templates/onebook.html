@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>One Book</h1>
+<hr />
+<div class="container">
+    <a href="{% url 'index'%}" class="btn btn-warning font-weight-bold">Home</a>
+</div><br>
+<hr />
+<div class="container">
+    <ul style="list-style: none;">
+        <li><strong>Título: </strong>{{book.title}}</li> 
+        <li><strong>Autor(es): </strong><a href="{% url 'select' book.id%}">{{book.authors}}</a></li>
+        <li><strong>Rating: </strong>{{book.average_rating}}</li>
+        <li><strong>ISBN: </strong>{{book.isbn}}</li>
+    </ul>
+</div><br>
+<h2>Envía el Libro</h2><hr />
+<div class="container">
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <br>
+    <div class="container">
+        <button type="submit" class="btn btn-success font-weight-bold">Enviar</button>
+    </div>
+    <script>
+        const inputs = document.querySelectorAll("input");
+        const text = document.querySelectorAll("textarea")
+    
+        inputs.forEach((input) => {
+            input.classList.add("form-control");
+        });
+        text.forEach((text) => {
+            text.classList.add("form-control");
+        });
+    </script>
+</form>
+</div>
+{% endblock %}

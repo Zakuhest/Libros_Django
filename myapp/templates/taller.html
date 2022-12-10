@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Taller</h1>
+<hr />
+<div class="container">
+    <a href="/myapp/" class="btn btn-warning font-weight-bold">Home</a>
+</div><br>
+    <hr />
+    <!-- Iterate over object_list -->
+    <div class="card-group" style="list-style: None;">
+        {% for object in object_list %}
+    <div class="col-2">
+        <div class="card text-white bg-dark border-danger mb-3" style="max-width: 25rem; min-height: 20rem;">
+        <div class="card-body text-left border-danger" style="min-height: 10rem;">
+    <!-- Display Objects -->
+    <li><strong>Título: </strong>{{ object.title }}</li><br>
+    <li><strong>Code: </strong>{{ object.language_code | upper }}</li><br>
+    {% if object.publisher|length <= 20 %}
+    <li><strong>Editorial: </strong> {{ object.publisher }}</li><br>
+    <li><strong>Tamaño del Editorial: </strong> {{object.publisher|length}}</li><br>
+    {% endif %}
+    {% if object.text_reviews.count > 10 %}
+    <li><strong>Count Reviews: </strong>{{ object.text_reviews_count }}</li><br>
+    {% endif %}
+</div>
+</div>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+body{
+    background-color: rgb(8, 2, 34);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+h1{
+    background-color: rgb(19, 16, 36);
+    padding: 30px;
+    margin: 30px;
+    border-radius: 100px;
+    color: white;
+}
+.card-header{
+    background-color: rgba(24, 19, 19, 0.637);
+}
+.card-body{
+    background-color: rgba(24, 19, 19, 0.637);
+}
+
+[type="radio"]{
+    opacity: 0;
+}
+[type="radio"] + label{
+    position: relative;
+    padding-left: 25px;
+    padding-right: 30px;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 15px;
+}
+[type="radio"] + label::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background-color: greenyellow;
+    border-radius: 100%;
+    border: 1px solid greenyellow;
+}
+
+[type="checkbox"]{
+    opacity: 0;
+}
+[type="checkbox"] + label{
+    position: relative;
+    padding-left: 25px;
+    padding-right: 30px;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 15px;
+}
+[type="checkbox"]:checked + label::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background-color: red;
+    border-radius: 100%;
+    border: 1px solid red;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.container-1{
+    display: flex;
+    justify-content: center;
+    margin-top: 300px;
+}

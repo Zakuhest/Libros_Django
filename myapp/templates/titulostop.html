@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Títulos en longitud - Top 20</h1>
+    <hr />
+    <div class="col">
+    <div class="container">
+      <a href="/myapp/" class="btn btn-warning font-weight-bold">Home</a>
+    </div><br>
+    <div class="container">
+      <div class="card-group">
+        <div class="card text-white bg-dark border-danger mb-3" style="max-width: 25rem;">
+          <div class="card-body bg-dark text-white text-center">
+      <strong>Min. Rating</strong> = {{ min.average_rating__min }} <br><br>
+      <strong>Max. Rating</strong> = {{ max.average_rating__max }} <br><br>
+      <strong>Avg. Rating</strong> = {{ avg.average_rating__avg }} <br><br>
+      <strong>Desviación Estándar</strong> = {{ desv_stand.average_rating__stddev }}
+    </div>
+  </div>
+</div>
+</div>
+<div class="card-group">
+  {% for libro in libros %}
+  <div class="col-2">
+    <div class="card text-white bg-dark border-danger mb-3" style="max-width: 25rem;">
+      <div class="card-header text-center border-danger" style="min-height: 12rem;">
+        <strong>Título: </strong>{{ libro.title }} <br>
+      </div>
+    <div class="card-body text-center border-danger">
+        <strong>Longitud: </strong>{{ libro.text_len }} <br><br>
+        <strong>Ratings: </strong>{{ libro.average_rating }}
+      <br>
+    </div>
+  </div>
+</div>
+      {% endfor %}
+  </div>
+{% endblock %}

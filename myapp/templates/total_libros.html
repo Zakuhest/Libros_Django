@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Total de libros publicados después del 2007 por año</h1>
+    <hr />
+    <div class="container">
+    <div>
+      <a href="/myapp/" class="btn btn-warning font-weight-bold">Home</a>
+    </div>
+    </div><br>
+    <div class="container">
+      <div class="card-group">
+        <div class="card text-white bg-dark border-danger mb-3" style="max-width: 15rem;">
+          <div class="card-body bg-dark text-white text-center">
+      {% for libro, cont in libros.items %}
+        <strong>Año "{{ libro }}"</strong> = {{ cont }} libros
+      <br><br>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}

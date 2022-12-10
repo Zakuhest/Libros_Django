@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <!-- if libros -->
+  {% if page_obj %}
+    <h1>Libros publicados después del 2007</h1>
+  {% endif %}
+  {% if ratings %}
+    <h1>Ratings de libros entre 3.6 y 4.2</h1>
+  {% endif %}
+  {% if filtro %}
+    <h1>Libros con rating mayor a 3.9 y número de páginas mayor a 400. Ordenado alfabéticamente por el título</h1>
+  {% endif %}
+  {% if ordenados %}
+  <h1>Libros ordenados descendentemente por el número de páginas y el isbn</h1>
+  {% endif %}
+  {% if editoras %}
+  <h1>Libros cuya editorial contenga la palabra "Books" o "'Audio"</h1>
+  {% endif %}
+  {% if filtros_varios %}
+  <h1>Libros con rating menor a 3.5, excluyendo a los que pertenezcan a editoras [Vintage, Cambridge University Press]. Ordenado descendentemente por número de reseñas</h1>
+  {% endif %}
+  {% if meses %}
+  <h1>Libros publicados entre los meses de Mayo a Agosto. Ordenados descendentemente por el rating</h1>
+  {% endif %}
+
+  <div class="container">
+    <a href="/myapp/" class="btn btn-warning font-weight-bold">Home</a>
+  </div><br>
+    <hr />
+    <div class="card-group">
+      <!-- for libro in libros -->
+      {% for libro in page_obj %}
+    <div class="col-2">
+      <div class="card text-white bg-dark border-danger mb-3" style="max-width: 25rem; min-height: 25rem;">
+      <div class="card-header text-center border-danger" style="min-height: 10rem;">
+        <strong>Título: </strong>{{ libro.title }} <br>
+      </div>
+      <div class="card-body text-center border-danger" style="min-height: 15rem;">
+        <strong>Ratings: </strong><br>
+        {{ libro.average_rating }} <br><br>
+        <strong>Editorial: </strong><br>
+        {{ libro.publisher }} <br><br>
+          <a href="{% url 'updt' libro.id %}" class="btn btn-danger">Update</a>
+      </div>
+      <div class="card-footer text-center border-danger">
+      <strong>Fecha Publicación: </strong>
+      {{ libro.publication_date.year }} <br>
+    </div>
+    </div>
+  </div>
+      {% endfor %}
+      {% for rating in ratings %}
+      <div class="col-2">
+        <div class="card text-white bg-dark border-danger mb-3" style="max-width: 25rem;">
+        <div class="card-header text-center border-danger" style="min-height: 10rem;">
+          <strong>Título: </strong>{{ rating.title }} <br>
+        </div>
+        <div class="card-body text-center border-danger">
+          <strong>Ratings: </strong><br>
+          {{ rating.average_rating }}<br>
+        </div>
+        <div class="card-footer text-center border-danger">
+        <strong>Fecha Publicación: </strong>
+        {{ rating.publication_date}} <br>
+      </div>
+      </div>
+    </div>
+      {% endfor %}
+      {% for f in filtro %}
+      <div class="col-2">
+        <div class="card text-white bg-dark border-danger mb-3" style="max-width: 25rem;">
+        <div class="card-header text-center border-danger" style="min-height: 10rem;">
+          <strong>Título: </strong>{{ f.title }} <br>
+        </div>
+        <div class="card-body text-center border-danger" style="min-height: 15rem;">
+          <strong>Número de páginas: </strong><br>
+          {{ f.num_pages}} <br><br>
+          <strong>Ratings: </strong><br>
+          {{ f.average_rating }} <br>
+        </div>
+        <div class="card-footer text-center border-danger">
+          <strong>Fecha Publicación: </strong>
+          {{ f.publication_date}} <br>
+      </div>
+      </div>
+    </div>
+      {% endfor %}
+      {% for ordenado in ordenados %}
+      <div class="col-2">
+        <div class="card text-white bg-dark border-danger mb-3" style="max-width: 25rem;">
+        <div class="card-header text-center border-danger" style="min-height: 10rem;">
+          <strong>Título: </strong>{{ ordenado.title }} <br>
+        </div>
+        <div class="card-body text-center border-danger" style="min-height: 15rem;">
+          <strong>Número de páginas: </strong><br>
+          {{ ordenado.num_pages}} <br>
+          <br>
+          <strong>ISBN: </strong><br>
+          {{ ordenado.isbn }} <br>
+        </div>
+        <div class="card-footer text-center border-danger">
+          <strong>Fecha Publicación: </strong>
+          {{ ordenado.publication_date}} <br>
+      </div>
+      </div>
+    </div>
+      {% endfor %}
+      {% for editor in editoras %}
+      <div class="col-2">
+        <div class="card text-white bg-dark border-danger mb-3" style="max-width: 25rem;">
+        <div class="card-header text-center border-danger" style="min-height: 10rem;">
+          <strong>Título: </strong>{{ editor.title }} <br>
+        </div>
+        <div class="card-body text-center border-danger" style="min-height: 15rem;">
+          <strong>Editorial: </strong><br>
+          {{ editor.publisher}} <br>
+          <br>
+          <strong>Ratings: </strong><br>
+          {{ editor.average_rating }} <br>
+        </div>
+        <div class="card-footer text-center border-danger">
+          <strong>Fecha Publicación: </strong>
+          {{ editor.publication_date}} <br>
+      </div>
+      </div>
+    </div>
+      {% endfor %}
+      {% for filtros in filtros_varios %}
+      <div class="col-2">
+        <div class="card text-white bg-dark border-danger mb-3" style="max-width: 25rem;">
+        <div class="card-header text-center border-danger" style="min-height: 10rem;">
+          <strong>Título: </strong>{{ filtros.title }} <br>
+        </div>
+        <div class="card-body text-center border-danger" style="min-height: 15rem;">
+          <strong>Editorial: </strong><br>
+          {{ filtros.publisher}} <br>
+          <br>
+          <strong>Ratings: </strong><br>
+          {{ filtros.average_rating }} <br>
+          <br>
+          <strong>Número de Reseñas: </strong><br>
+          {{ filtros.text_reviews_count }} <br>
+        </div>
+        <div class="card-footer text-center border-danger">
+          <strong>Fecha Publicación: </strong>
+          {{ filtros.publication_date}} <br>
+      </div>
+      </div>
+    </div>
+      {% endfor %}
+      {% for mes in meses %}
+      <div class="col-2">
+        <div class="card text-white bg-dark border-danger mb-3" style="max-width: 25rem;">
+        <div class="card-header text-center border-danger" style="min-height: 10rem;">
+          <strong>Título: </strong>{{ mes.title }} <br>
+        </div>
+        <div class="card-body text-center border-danger" style="min-height: 15rem;">
+          <strong>Editorial: </strong><br>
+          {{ mes.publisher}} <br>
+          <br>
+          <strong>Ratings: </strong><br>
+          {{ mes.average_rating }} <br>
+        </div>
+        <div class="card-footer text-center border-danger">
+          <strong>Fecha Publicación: </strong>
+          {{ mes.publication_date }} <br>
+      </div>
+      </div>
+    </div>
+      {% endfor %}
+</div>
+<div class="container">
+<div class="pagination">
+  <span class="step-links">
+    <br>
+      {% if page_obj.has_previous %}
+          <a href="?page=1" class="btn btn-info">&laquo; Primera</a>
+          <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-info">&laquo;Anterior</a>
+      {% endif %}
+      <br>
+      <br>
+      <div class="container">
+      <span class="current text-white">
+          Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+      </span>
+      </div>
+      <br>
+      {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}" class="btn btn-info">Siguiente &raquo;</a>
+          <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-info"> Último &raquo;</a>
+      {% endif %}
+  </span>
+</div>
+</div>
+<hr />
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Proyectos con DJango</h1>
+    <hr />
+    <h2>Taller Libros</h2>
+    <br>
+    <div class="btn btn-group-row">
+    <div>
+      <a href="libros/1q" class="btn btn-success">1. Libros publicados después del 2007</a>
+    </div>
+    <br>
+    <div>
+      <a href="libros/2q" class="btn btn-success">2. Cantidad de libros publicados después del 2007 por año</a>
+    </div>
+    <br>
+    <div>
+      <a href="libros/3q" class="btn btn-success">3. Ratings de libros entre 3.6 y 4.2</a>
+    </div>
+    <br>
+    <div>
+      <a href="libros/4qy5q" class="btn btn-success">4. Títulos en longitud - Top 20 (contiene valor menor, mayor, promedio y desviación estándar)</a>
+    </div><br>
+    <div>
+      <a href="libros/6q" class="btn btn-success">5. Libros con rating mayor a 3.9 y número de páginas mayor a 400. Ordenado alfabéticamente por el título</a>
+    </div><br>
+    <div>
+      <a href="libros/7q" class="btn btn-success">6. Libros ordenados descendentemente por el número de páginas y el isbn</a>
+    </div><br>
+    <div>
+      <a href="libros/8q" class="btn btn-success">7. Libros cuya editorial contenga la palabra "Books" o "'Audio"</a>
+    </div><br>
+    <div>
+      <a href="libros/9q" class="btn btn-success">8. Libros con rating menor a 3.5, excluyendo a los que pertenezcan a editoras [Vintage, Cambridge University Press]. Ordenado descendentemente por número de reseñas</a>
+    </div><br>
+    <div>
+      <a href="libros/10q" class="btn btn-success">9. Libros publicados entre los meses de Mayo a Agosto. Ordenados descendentemente por el rating</a>
+    </div><br>
+    <div>
+      <a href="libros/11q" class="btn btn-danger">10. Libros donde publisher debe tener un tamaño menor igual a 20 y text_reviews_count debe ser mayor 10</a>
+    </div><br>
+  </div>
+    <br>
+    <hr />
+    <h2>Listado de Alumnos</h2>
+    <br>
+    <div class="col">
+    <div>
+      <a href="crear/" class="btn btn-warning font-weight-bold">Add</a>
+    </div>
+    <br>
+    <ul style="list-style-type: decimal;">
+      {% for alumno in people %}
+      <li>
+        <strong>Nombre: </strong>{{ alumno.first_name }} <strong>| Apellidos: </strong>{{ alumno.last_name }}<br>
+        <strong>Nota Laboratorio: </strong>{{ alumno.nota_laboratorio }} <br><strong>Nota Examen: </strong>{{ alumno.examen }}
+      </li><br>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

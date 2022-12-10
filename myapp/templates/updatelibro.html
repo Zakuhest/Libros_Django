@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>UPDATE AUTHOR</h1>
+<hr />
+<div class="container">
+    <a href="{% url 'libros1'%}" class="btn btn-light font-weight-bold">Back</a>
+</div><br>
+<hr />
+<div class="container">
+        <div class="card text-white bg-dark border-danger mb-3" style="max-width: 20rem; min-height: 25rem;">
+        <div class="card-header text-center border-danger" style="min-height: 10rem;">
+            <strong>Título: </strong>{{book.title}}
+        </div>
+        <div class="card-body text-center border-danger" style="min-height: 15rem;">
+            <strong>Autor(es): </strong><br>{{book.authors}}<br><br>
+            <strong>Rating: </strong><br>{{book.average_rating}} <br><br>
+            <strong>ISBN: </strong><br>{{book.isbn}} <br>
+        </div>
+</div>
+</div>
+    <br>
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="container">
+                <button type="submit" class="btn btn-danger font-weight-bold">Update</button>
+            </div>
+            <script>
+                const inputs = document.querySelectorAll("input");
+            
+                inputs.forEach((input) => {
+                    input.classList.add("form-control");
+                });
+            </script>
+        </form>
+    </div>
+
+{% endblock %}
